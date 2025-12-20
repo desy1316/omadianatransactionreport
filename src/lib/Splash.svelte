@@ -12,17 +12,20 @@
     .splash {
         min-height: 100vh;
         background-color: orangered;
-    }
-
-    .splash-content {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
+    /* .splash-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+
     .splash img {
-        margin-top: 120px;
         width: 300px;
+        height: auto;
     }
 
     @media (max-width: 576px) {
