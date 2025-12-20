@@ -4,7 +4,7 @@
 
 <section class="splash">
     <div class="splash-content">
-        <img src={oma} alt="oma" />
+        <img src="./oma.webp" alt="oma" />
     </div>
 </section>
 
@@ -26,11 +26,5 @@
     .splash img {
         width: 300px;
         height: auto;
-    }
-
-    @media (max-width: 576px) {
-        .splash img {
-            margin-top: 250px;
-        }
     }
 </style>
