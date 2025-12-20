@@ -45,7 +45,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h5 class="oyen">{pagename}</h5>
+                <h5 class="spx">{pagename}</h5>
                 <Pelanggan />
             </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover table-sm">
+                    <table class="table table-striped table-hover">
                         <thead class="text-center">
                             <tr>
                                 <td>#</td>

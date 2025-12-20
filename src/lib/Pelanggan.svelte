@@ -28,20 +28,20 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4">
-                    <h6 class="text-dark">
-                        <i class="bx bxs-user-pin circle text-danger"></i>
+                    <h6 class="text-white">
+                        <i class="bx bxs-user-pin circle text-white"></i>
                         {dataclient.pelanggan}
                     </h6>
-                    <h6 class="text-dark">
-                        <i class="bx bx-calendar-event text-danger"></i>
+                    <h6 class="text-white">
+                        <i class="bx bx-calendar-event text-white"></i>
                         Periode {dataclient.periode}
                     </h6>
                     <hr />
-                    <p class="text-dark ref mb-1 mt-2">
+                    <p class="text-white ref mb-1 mt-2">
                         <i class="bx bx-calendar-exclamation"></i>
                         {message}
                     </p>
-                    <p class="ref">
+                    <p class="ref text-white">
                         <i class="bx bx-calendar-exclamation"></i>
                         {message2}
                     </p>

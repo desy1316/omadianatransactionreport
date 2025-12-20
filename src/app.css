@@ -13,8 +13,12 @@ table {
 }
 
 thead {
-  background-color: var(--xprime) !important;
+  background-color: rgb(241, 84, 26) !important;
   color: #fff !important;
+}
+
+.spx {
+  color: rgb(255, 94, 0) !important;
 }
 
 .gt-text {
@@ -27,5 +31,10 @@ thead {
 }
 
 .card {
+  border-radius: 11px !important;
+  background-color: rgb(235, 78, 21) !important;
+}
+
+.form-control {
   border-radius: 11px !important;
 }
