@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <h6 class="text-dark">
-                        <i class="bx bxs-user-pin circle text-white"></i>
+                        <i class="bx bxs-user-pin circle text-dark"></i>
                         {dataclient.pelanggan}
                     </h6>
                     <h6 class="text-dark">
