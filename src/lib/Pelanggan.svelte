@@ -32,16 +32,16 @@
                         <i class="bx bxs-user-pin circle text-white"></i>
                         {dataclient.pelanggan}
                     </h6>
-                    <h6 class="text-white">
-                        <i class="bx bx-calendar-event text-white"></i>
+                    <h6 class="text-dark">
+                        <i class="bx bx-calendar-event text-dark"></i>
                         Periode {dataclient.periode}
                     </h6>
                     <hr />
-                    <p class="text-white ref mb-1 mt-2">
+                    <p class="text-dark ref mb-1 mt-2">
                         <i class="bx bx-calendar-exclamation"></i>
                         {message}
                     </p>
-                    <p class="ref text-white">
+                    <p class="ref text-dark">
                         <i class="bx bx-calendar-exclamation"></i>
                         {message2}
                     </p>

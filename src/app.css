@@ -3,19 +3,25 @@
   --xprime: rgb(194, 16, 3);
 }
 
+.btn-oyen {
+  background-color: orangered !important;
+  color: #fff !important;
+}
+
 
 .oyen {
   color: var(--prime) !important;
+}
+
+.btn {
+  border-radius: 12px !important;
 }
 
 table {
   font-size: .8rem !important;
 }
 
-thead {
-  background-color: rgb(241, 84, 26) !important;
-  color: #fff !important;
-}
+
 
 .spx {
   color: rgb(255, 94, 0) !important;
@@ -32,7 +38,6 @@ thead {
 
 .card {
   border-radius: 11px !important;
-  background-color: rgb(235, 78, 21) !important;
 }
 
 .form-control {
