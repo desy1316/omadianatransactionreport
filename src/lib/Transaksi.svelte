@@ -6,14 +6,14 @@
     const sheetid = "1GXnRO2U0Qmciu2Zq5USCNuOG-ZqB_nyD57l_AtmxUd8";
     const range = "transaksi";
 
-    const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetid}/values/${range}?key=${api}`;
+    // const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetid}/values/${range}?key=${api}`;
 
     let transaksis = [];
     let caridata = "";
     let jumlahdataperhalaman = 10;
 
     async function FecthTransaksi() {
-        const response = await fetch(endpoint);
+        const response = await fetch("/api/transaksi");
         const json = await response.json();
         const [header, ...rows] = json.values;
 

@@ -15,7 +15,11 @@
 <style>
     .splash {
         min-height: 100vh;
-        background-color: orangered;
+        /* background-color: orangered; */
+        background-image: url("/bg.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,5 +39,11 @@
     .splash img {
         width: 300px;
         height: auto;
+    }
+
+    @media (max-width: 576px) {
+        #developer {
+            margin-bottom: 50px;
+        }
     }
 </style>
