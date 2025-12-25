@@ -102,18 +102,24 @@
                         </thead>
 
                         <tbody class="text-center">
-                            {#each datatampil as trx, i}
+                            {#if datatampil.length < 1}
                                 <tr>
-                                    <td>{i + 1}</td>
-                                    <td>{trx.kode_transaksi}</td>
-                                    <td>{trx.tgl_ambil}</td>
-                                    <td>{trx.picked}</td>
-                                    <td class="text-left">{trx.produk}</td>
-                                    <td>{FormatHarga(trx.harga)}</td>
-                                    <td>{trx.qty}</td>
-                                    <td>{FormatHarga(trx.total)}</td>
+                                    <td colspan="8">Belum ada Transaksi</td>
                                 </tr>
-                            {/each}
+                            {:else}
+                                {#each datatampil as trx, i}
+                                    <tr>
+                                        <td>{i + 1}</td>
+                                        <td>{trx.kode_transaksi}</td>
+                                        <td>{trx.tgl_ambil}</td>
+                                        <td>{trx.picked}</td>
+                                        <td class="text-left">{trx.produk}</td>
+                                        <td>{FormatHarga(trx.harga)}</td>
+                                        <td>{trx.qty}</td>
+                                        <td>{FormatHarga(trx.total)}</td>
+                                    </tr>
+                                {/each}
+                            {/if}
 
                             {#if limit < filterpengambilan.length}
                                 <tr>
