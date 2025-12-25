@@ -12,7 +12,7 @@
     let caridata = "";
 
     async function FecthTransaksi() {
-        const response = await fetch(endpoint);
+        // const response = await fetch("/api");
         const response = await fetch("/api/transaksi");
         const json = await response.json();
         const [header, ...rows] = json.values;
