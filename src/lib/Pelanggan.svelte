@@ -54,7 +54,6 @@
 <style>
     .wicard {
         position: relative;
-        overflow: hidden;
     }
     .ref {
         font-size: 0.7rem !important;

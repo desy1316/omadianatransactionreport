@@ -5,6 +5,7 @@
   import "boxicons/css/boxicons.css";
   import Splash from "./lib/Splash.svelte";
   import Transaksi from "./lib/Transaksi.svelte";
+  import Footer from "./lib/Footer.svelte";
 
   let loading = true;
   onMount(async () => {
@@ -20,5 +21,6 @@
 {:else}
   <div in:fade={{ duration: 1400 }}>
     <Transaksi />
+    <Footer />
   </div>
 {/if}

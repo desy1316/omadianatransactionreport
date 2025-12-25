@@ -10,9 +10,9 @@
 
     let transaksis = [];
     let caridata = "";
-    let jumlahdataperhalaman = 10;
 
     async function FecthTransaksi() {
+        const response = await fetch(endpoint);
         const response = await fetch("/api/transaksi");
         const json = await response.json();
         const [header, ...rows] = json.values;
@@ -33,8 +33,6 @@
     $: filterpengambilan = transaksis.filter((data) =>
         data.picked.toLowerCase().includes(caridata.toLowerCase()),
     );
-
-    $: tampildata = filterpengambilan.slice(0, jumlahdataperhalaman);
 
     $: totalbayar = filterpengambilan.reduce(
         (sum, transaksi) => sum + Number(transaksi.total),
@@ -111,7 +109,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            {#each tampildata as trx, i}
+                            {#each filterpengambilan as trx, i}
                                 <tr>
                                     <td>{i + 1}</td>
                                     <td>{trx.kode_transaksi}</td>
@@ -125,30 +123,15 @@
                             {/each}
                         </tbody>
 
-                        {#if jumlahdataperhalaman > filterpengambilan.length && filterpengambilan.length > 0}
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6" class="gt-text"
-                                        >Grand Total</td
-                                    >
-                                    <td colspan="2" class="text-center gt-text"
-                                        >{FormatHarga(totalbayar)}</td
-                                    >
-                                </tr>
-                            </tfoot>
-                        {/if}
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="gt-text">Grand Total</td>
+                                <td colspan="2" class="text-center gt-text"
+                                    >{FormatHarga(totalbayar)}</td
+                                >
+                            </tr>
+                        </tfoot>
                     </table>
-
-                    {#if jumlahdataperhalaman < filterpengambilan.length}
-                        <button
-                            type="button"
-                            class="btn btn-outline-dark btn-sm"
-                            on:click={() => (jumlahdataperhalaman += 10)}
-                        >
-                            <i class="bx bxs-chevrons-down bx-tada"></i>
-                            Tampilkan Transaksi Berikut
-                        </button>
-                    {/if}
                 </div>
             </div>
         </div>
