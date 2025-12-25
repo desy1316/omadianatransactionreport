@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import Pelanggan from "./Pelanggan.svelte";
+
     const pagename = "Daftar Transaksi Pengambilan";
     const api = "AIzaSyAI85XgiG2zNlph1Xa7dNn4uFjm2frRsF8";
     const sheetid = "1GXnRO2U0Qmciu2Zq5USCNuOG-ZqB_nyD57l_AtmxUd8";
@@ -10,32 +11,54 @@
 
     let transaksis = [];
     let caridata = "";
+    let limit = 10;
 
     async function FecthTransaksi() {
-        // const response = await fetch("/api");
         const response = await fetch("/api/transaksi");
         const json = await response.json();
         const [header, ...rows] = json.values;
 
-        transaksis = rows.map((row) => {
-            return Object.fromEntries(header.map((data, i) => [data, row[i]]));
-        });
+        transaksis = rows.map((row) =>
+            Object.fromEntries(header.map((h, i) => [h, row[i] ?? ""])),
+        );
+    }
+
+    function handleScroll() {
+        if (
+            window.innerHeight + window.scrollY >=
+            document.body.offsetHeight - 50
+        ) {
+            if (limit < filterpengambilan.length) {
+                limit += 10;
+            }
+        }
+    }
+
+    function FormatHarga(harga) {
+        return Intl.NumberFormat("id-ID").format(Number(harga || 0));
     }
 
     onMount(() => {
         FecthTransaksi();
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     });
 
-    function FormatHarga(harga) {
-        return `${Intl.NumberFormat("id-Id").format(harga)}`;
-    }
+    // reset limit saat search berubah
+    $: caridata, (limit = 10);
 
-    $: filterpengambilan = transaksis.filter((data) =>
-        data.picked.toLowerCase().includes(caridata.toLowerCase()),
+    $: filterpengambilan = transaksis.filter(
+        (d) =>
+            d.picked && d.picked.toLowerCase().includes(caridata.toLowerCase()),
     );
 
-    $: totalbayar = filterpengambilan.reduce(
-        (sum, transaksi) => sum + Number(transaksi.total),
+    $: datatampil = filterpengambilan.slice(0, limit);
+
+    $: totalbayar = datatampil.reduce(
+        (sum, t) => sum + Number(t.total || 0),
         0,
     );
 </script>
@@ -48,6 +71,7 @@
                 <Pelanggan />
             </div>
         </div>
+
         <div class="row my-2">
             <div class="col-lg-12">
                 <input
@@ -59,6 +83,7 @@
                 />
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
@@ -66,50 +91,18 @@
                         <thead class="text-center">
                             <tr>
                                 <td>#</td>
-                                <td>
-                                    <i class="bx bx-code-alt bx-border-circle"
-                                    ></i>
-                                    Kode Transaksi
-                                </td>
-
-                                <td>
-                                    <i
-                                        class="bx bx-calendar-event bx-border-circle"
-                                    ></i>
-                                    Waktu Ambil
-                                </td>
-
-                                <td
-                                    ><i
-                                        class="bx bx-user-circle bx-border-circle"
-                                    ></i>
-                                    Di Ambil Oleh
-                                </td>
-
-                                <td class="text-left"
-                                    ><i class="bx bx-package bx-border-circle"
-                                    ></i>
-                                    Item
-                                </td>
-                                <td
-                                    ><i class="bx bxs-wallet bx-border-circle"
-                                    ></i>
-                                    Harga
-                                </td>
-                                <td>
-                                    <i class="bx bx-sort bx-border-circle"></i>
-                                    Qty
-                                </td>
-                                <td>
-                                    <i
-                                        class="bx bx-wallet bx border-circle bx-border-circle"
-                                    ></i>
-                                    Total
-                                </td>
+                                <td>Kode Transaksi</td>
+                                <td>Waktu Ambil</td>
+                                <td>Di Ambil Oleh</td>
+                                <td class="text-left">Item</td>
+                                <td>Harga</td>
+                                <td>Qty</td>
+                                <td>Total</td>
                             </tr>
                         </thead>
+
                         <tbody class="text-center">
-                            {#each filterpengambilan as trx, i}
+                            {#each datatampil as trx, i}
                                 <tr>
                                     <td>{i + 1}</td>
                                     <td>{trx.kode_transaksi}</td>
@@ -121,14 +114,24 @@
                                     <td>{FormatHarga(trx.total)}</td>
                                 </tr>
                             {/each}
+
+                            {#if limit < filterpengambilan.length}
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <small
+                                            >Scroll untuk load data berikutnya…</small
+                                        >
+                                    </td>
+                                </tr>
+                            {/if}
                         </tbody>
 
                         <tfoot>
                             <tr>
                                 <td colspan="6" class="gt-text">Grand Total</td>
-                                <td colspan="2" class="text-center gt-text"
-                                    >{FormatHarga(totalbayar)}</td
-                                >
+                                <td colspan="2" class="text-center gt-text">
+                                    {FormatHarga(totalbayar)}
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
