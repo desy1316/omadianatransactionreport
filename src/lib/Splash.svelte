@@ -15,8 +15,8 @@
 <style>
     .splash {
         min-height: 100vh;
-        /* background-color: orangered; */
-        background-image: url("/bg.webp");
+        background-color: orangered;
+        /* background-image: url("/bg.webp"); */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
