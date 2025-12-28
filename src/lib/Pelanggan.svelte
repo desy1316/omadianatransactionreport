@@ -1,5 +1,6 @@
 <script>
     import { onMount } from "svelte";
+    import Cuaca from "./Cuaca.svelte";
     const range = "pelanggan";
     const idpelanggan = "1GXnRO2U0Qmciu2Zq5USCNuOG-ZqB_nyD57l_AtmxUd8";
     const key = "AIzaSyAI85XgiG2zNlph1Xa7dNn4uFjm2frRsF8";
@@ -45,6 +46,9 @@
                         <i class="bx bx-calendar-exclamation"></i>
                         {message2}
                     </p>
+                </div>
+                <div class="col-lg-8 text-right">
+                    <Cuaca />
                 </div>
             </div>
         </div>
